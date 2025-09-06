@@ -13,7 +13,21 @@ app.get("/", (req, res) => {
   res.send("Email sending server is running");
 });
 
- console.log(process.env.Zap_Email);
+const emailTransporter = nodemailer.createTransport({
+  service : "gmail",
+  auth : {
+    user : process.env.Zap_Email, 
+  }
+})
+console.log(process.env.Zap_Email);
+
+app.get("/send-payment-email", async(req, res) => {
+
+  const  paymentInfo = {
+    transactionId : "",
+    user: "esmotaramonisa1002@gmail.com",
+  }
+})
 
 app.post("/send-email", async (req, res) => {
   const { to, subject, text } = req.body;
